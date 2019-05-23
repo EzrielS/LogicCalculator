@@ -76,9 +76,11 @@ int yylex(){
 
 			default:
 				ungetc(c, stdin);
-				scanf("%16s", operation);
+
+				scanf("%16[a-zA-Z]", operation);
+
 				char* i = operation;
-				while(*i){ 
+				while(*i){
 					*i = toupper(*i);
 					i++;
 				}
