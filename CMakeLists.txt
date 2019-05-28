@@ -25,18 +25,18 @@ IF(NOT GZIP_TOOL)
 ENDIF(NOT GZIP_TOOL)
 
 # Compression of the manuals
-ADD_CUSTOM_COMMAND(OUTPUT logicCalc.1.gz
-                   COMMAND ${GZIP_TOOL} -c logicCalc.1 > logicCalc.1.gz
-                   DEPENDS logicCalc.1
-                   COMMENT "Building logicCalc.1.gz")
+ADD_CUSTOM_COMMAND(OUTPUT logicCalculator.1.gz
+                   COMMAND ${GZIP_TOOL} -c logicCalculator.1 > logicCalculator.1.gz
+                   DEPENDS logicCalculator.1
+                   COMMENT "Building logicCalculator.1.gz")
 #force compression
 add_custom_target(run ALL
-    DEPENDS logicCalc.1.gz)
+    DEPENDS logicCalculator.1.gz)
 
 # Installation of the manuals
-INSTALL(FILES logicCalc.1.gz
+INSTALL(FILES logicCalculator.1.gz
         DESTINATION "share/man/man1"
-        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ RENAME logicCalc.1.gz)
+        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ RENAME logicCalculator.1.gz)
 #################################################################################
 
 
