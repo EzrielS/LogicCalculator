@@ -24,14 +24,17 @@ IF(NOT GZIP_TOOL)
   MESSAGE(FATAL_ERROR "Unable to find 'gzip' program") 
 ENDIF(NOT GZIP_TOOL)
 
+
 # Compression of the manuals
 ADD_CUSTOM_COMMAND(OUTPUT logicCalculator.1.gz
-                   COMMAND ${GZIP_TOOL} -c logicCalculator.1 > logicCalculator.1.gz
+	COMMAND ${GZIP_TOOL} -c ${CMAKE_CURRENT_SOURCE_DIR}/logicCalculator.1 > ${CMAKE_CURRENT_BINARY_DIR}/logicCalculator.1.gz
                    DEPENDS logicCalculator.1
                    COMMENT "Building logicCalculator.1.gz")
 #force compression
 add_custom_target(run ALL
     DEPENDS logicCalculator.1.gz)
+
+
 
 # Installation of the manuals
 INSTALL(FILES logicCalculator.1.gz
