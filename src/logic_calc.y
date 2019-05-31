@@ -24,14 +24,15 @@
 %left <o> OP
 %type <c> expr exprs 
 
-%start exprs			/* le symbole de depart */
+%start exprs
 
 %%
-exprs : /* rien */
-		{ printf("? "); }
-		| exprs expr '\n'
-		{ print_bool($2);
-			printf("\n? "); }
+exprs : /* rien */			
+				{ printf("? "); }
+		| exprs expr '\n'	
+				{ print_bool($2);	printf("\n? "); }
+		| exprs error '\n'	
+				{ yyerrok; printf("? ");}
 		;		
 
 expr : 		BOOLEAN 		
@@ -132,6 +133,6 @@ char compute(char f1, char f2, enum op operation){
 }
 
 void print_bool(char c){
-	if(c){ printf("True\n"); return;}
-	printf("False\n");
+	if(c){ printf("True"); return;}
+	printf("False");
 }
